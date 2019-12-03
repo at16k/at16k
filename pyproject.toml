@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "at16k"
+version = "0.1.0"
+description = "at16k is a Python library to perform automatic speech recognition or speech to text conversion."
+authors = ["Mohit Shah <mohit@at16k.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+tensorflow = "1.14"
+scipy = "^1.3.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+pylint = "^2.4.4"
+autopep8 = "^1.4.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
