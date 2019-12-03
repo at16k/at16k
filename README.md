@@ -2,7 +2,7 @@
 Pronounced as ***at sixteen k***
 
 # What is at16k?
-at16k is a Python library to perform automatic speech recognition or speech to text conversion. The goal of this project is to provide develoeprs with a production quality speech-to-text library.
+at16k is a Python library to perform automatic speech recognition or speech to text conversion. The goal of this project is to provide the community with a production quality speech-to-text library.
 
 # Installation
 It is recommended that you install at16k in a virtual environment.
@@ -58,7 +58,14 @@ $ ffmpeg -i <input_file> -ar 16000 -ac 1 -ab 16 <output_file>
 # Usage
 
 ## Command line
-
+There are two ways to invoke at16k speech-to-text via the command line.
+```
+at16k-convert -i <input_wav_file> -m <model_name>
+```
+Alternatively,
+```
+python -m at16k.bin.speech_to_text -i <input_wav_file> -m <model_name>
+```
 ## Library API
 ```
 from at16k.api import SpeechToText
@@ -70,3 +77,7 @@ STT = SpeechToText('en_16k') # or en_8k
 print(STT('./samples/test.wav'))
 ```
 Check [example.py](example.py) for details on how to use the API.
+
+# Limitations
+
+The max duration of your audio file should be less than **30 seconds** when using **en_8k**, and less than **15 seconds** when using **en_16k**. An error will not be thrown ff the duration exceeds the limits, however, your transcript may contain errors and missing text.
