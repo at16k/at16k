@@ -17,6 +17,14 @@ It is recommended that you install at16k in a virtual environment.
 $ pip install at16k
 ```
 
+## Install from source
+Requires: [poetry](https://github.com/sdispater/poetry)
+```
+$ git clone https://github.com/at16k/at16k.git
+$ poetry env use python3.6
+$ poetry install
+```
+
 # Download models
 Currently, two models are available for speech to text conversion.
 - en_8k (Trained on english audio recorded at 8 KHz)
