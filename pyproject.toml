@@ -1,8 +1,12 @@
 [tool.poetry]
 name = "at16k"
-version = "0.1.0"
+version = "0.1.1"
 description = "at16k is a Python library to perform automatic speech recognition or speech to text conversion."
 authors = ["Mohit Shah <mohit@at16k.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/at16k/at16k.git"
+keywords = ["asr, automatic speech recognition, speech-to-text, speech recognition, speech analysis"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
