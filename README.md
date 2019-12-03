@@ -40,8 +40,33 @@ $ python -m at16k.download en_8k
 $ python -m at16k.download en_16k
 ```
 
+# Preprocessing audio files
+at16k accepts wav files with the following spces:
+- Channels: 1
+- Bits per sample: 16
+- Sample rate: 8000 (en_8k) or 16000 (en_16k)
+
+Use ffmpeg to convert your audio/video files to an acceptable format. For example,
+```
+# For 8 KHz
+$ ffmpeg -i <input_file> -ar 8000 -ac 1 -ab 16 <output_file>
+
+# For 16 KHz
+$ ffmpeg -i <input_file> -ar 16000 -ac 1 -ab 16 <output_file>
+```
+
 # Usage
 
 ## Command line
 
 ## Library API
+```
+from at16k.api import SpeechToText
+
+# One-time initialization
+STT = SpeechToText('en_16k') # or en_8k
+
+# Run STT on an audio file, returns a dict
+print(STT('./samples/test.wav'))
+```
+Check [example.py](example.py) for details on how to use the API.
