@@ -76,8 +76,16 @@ STT = SpeechToText('en_16k') # or en_8k
 # Run STT on an audio file, returns a dict
 print(STT('./samples/test_16k.wav'))
 ```
-Check [example.py](example.py) for details on how to use the API.
+Check [example.py](https://github.com/at16k/at16k/blob/master/example.py) for details on how to use the API.
 
 # Limitations
 
 The max duration of your audio file should be less than **30 seconds** when using **en_8k**, and less than **15 seconds** when using **en_16k**. An error will not be thrown ff the duration exceeds the limits, however, your transcript may contain errors and missing text.
+
+# License
+
+This software is distributed under the MIT license.
+
+# Acknowledgements
+
+TFRC Tensorflow Research Cloud program for cloud TPU hours.
