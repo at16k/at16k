@@ -88,4 +88,4 @@ This software is distributed under the MIT license.
 
 # Acknowledgements
 
-TFRC Tensorflow Research Cloud program for cloud TPU hours.
+We would like to thank [Google TensorFlow Research Cloud (TFRC)](https://www.tensorflow.org/tfrc) program for providing access to cloud TPUs.
