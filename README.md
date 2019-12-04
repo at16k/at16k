@@ -80,7 +80,7 @@ Check [example.py](https://github.com/at16k/at16k/blob/master/example.py) for de
 
 # Limitations
 
-The max duration of your audio file should be less than **30 seconds** when using **en_8k**, and less than **15 seconds** when using **en_16k**. An error will not be thrown ff the duration exceeds the limits, however, your transcript may contain errors and missing text.
+The max duration of your audio file should be less than **30 seconds** when using **en_8k**, and less than **15 seconds** when using **en_16k**. An error will not be thrown if the duration exceeds the limits, however, your transcript may contain errors and missing text.
 
 # License
 
