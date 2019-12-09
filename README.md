@@ -1,6 +1,14 @@
 # at16k
 Pronounced as ***at sixteen k***
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/GlibAI/at16k/graphs/commit-activity)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![PyPI license](https://img.shields.io/pypi/l/at16k.svg)](https://pypi.python.org/pypi/at16k/)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat">
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/at16k.svg)
+[![Downloads](https://pepy.tech/badge/at16k)](https://pepy.tech/project/at16k)
+
 # What is at16k?
 at16k is a Python library to perform automatic speech recognition or speech to text conversion. The goal of this project is to provide the community with a production quality speech-to-text library.
 
