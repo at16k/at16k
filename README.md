@@ -8,7 +8,7 @@ at16k is a Python library to perform automatic speech recognition or speech to t
 It is recommended that you install at16k in a virtual environment.
 
 ## Prerequisites
-- Python = 3.6 (not tested on other versions)
+- Python >= 3.6
 - Tensorflow = 1.14
 - Scipy (for reading wav files)
 
@@ -56,9 +56,9 @@ $ ffmpeg -i <input_file> -ar 16000 -ac 1 -ab 16 <output_file>
 ```
 
 # Usage
+There are three ways to invoke at16k speech-to-text converter.
 
 ## Command line
-There are two ways to invoke at16k speech-to-text via the command line.
 ```
 at16k-convert -i <input_wav_file> -m <model_name>
 ```
@@ -77,6 +77,16 @@ STT = SpeechToText('en_16k') # or en_8k
 print(STT('./samples/test_16k.wav'))
 ```
 Check [example.py](https://github.com/at16k/at16k/blob/master/example.py) for details on how to use the API.
+
+## REST API server
+```
+at16k-serve -p <port> -m <model_name>
+```
+Alternatively,
+```
+python -m at16k.bin.serve -i <input_wav_file> -m <model_name>
+```
+Check [API Docs](https://documenter.getpostman.com/view/1430496/SWE58Kwx?version=latest) for details on how to use the REST API.
 
 # Limitations
 
