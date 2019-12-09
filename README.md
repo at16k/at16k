@@ -94,6 +94,11 @@ Alternatively,
 ```
 python -m at16k.bin.serve -i <input_wav_file> -m <model_name>
 ```
+Lastly, via Docker -
+```
+$ docker pull at16k/at16k:0.1.2
+$ docker run -it at16k/at16k:0.1.2 -p <port> -m <model_name>
+```
 Check [API Docs](https://documenter.getpostman.com/view/1430496/SWE58Kwx?version=latest) for details on how to use the REST API.
 
 # Limitations
