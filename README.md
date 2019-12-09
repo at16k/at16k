@@ -47,6 +47,12 @@ Alternatively, you can download only the model you need. For example:
 $ python -m at16k.download en_8k
 $ python -m at16k.download en_16k
 ```
+By default, the models will be downloaded and stored at <HOME_DIR>/.at16k. To override the default, set the environment variable AT16K_RESOURCES_DIR.
+For example:
+```
+$ export AT16K_RESOURCES_DIR=/path/to/my/directory
+```
+You will need to reuse this environment variable while using the API via command-line, library or REST API.
 
 # Preprocessing audio files
 at16k accepts wav files with the following spces:
@@ -96,8 +102,8 @@ python -m at16k.bin.serve -i <input_wav_file> -m <model_name>
 ```
 Lastly, via Docker -
 ```
-$ docker pull at16k/at16k:0.1.2
-$ docker run -it at16k/at16k:0.1.2 -p <port> -m <model_name>
+$ docker pull at16k/at16k:0.1.3
+$ docker run -it at16k/at16k:0.1.3 -p <port> -m <model_name>
 ```
 Check [API Docs](https://documenter.getpostman.com/view/1430496/SWE58Kwx?version=latest) for details on how to use the REST API.
 
