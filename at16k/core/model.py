@@ -35,8 +35,12 @@ class Model():
 
     @staticmethod
     def _get_model_dir(name):
-        sys_home_dir = str(Path.home())
-        model_dir = os.path.join(sys_home_dir, '.at16k', name)
+        if 'AT16K_RESOURCES_DIR' in os.environ:
+            base_dir = os.environ['AT16K_RESOURCES_DIR']
+        else:
+            sys_home_dir = str(Path.home())
+            base_dir = os.path.join(sys_home_dir, '.at16k')
+        model_dir = os.path.join(base_dir, name)
         assert os.path.exists(model_dir), ('%s model does not exist at %s' % (name, model_dir))
         return model_dir
 

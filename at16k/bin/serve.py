@@ -16,7 +16,7 @@ CORS(APP)
 def _get_args():
     parser = argparse.ArgumentParser(description='Example API')
     parser.add_argument('-p', '--port', type=int,
-                        default=9999, help='Port number')
+                        default=8080, help='Port number')
     parser.add_argument('-m', '--model', type=str,
                         default='en_16k', help='Model name')
     args = parser.parse_args()
@@ -57,11 +57,22 @@ ARGS = _get_args()
 UPLOAD_DIR = './uploads'
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-STT_MODEL = SpeechToText(ARGS.model)
+MODEL_NAME = None
+if 'AT16K_MODEL_NAME' in os.environ:
+    MODEL_NAME = os.environ['AT16K_MODEL_NAME']
+else:
+    MODEL_NAME = ARGS.model
+STT_MODEL = SpeechToText(MODEL_NAME)
 
-print('Ready to serve.')
+PORT_NUM = None
+if 'AT16K_PORT_NUM' in os.environ:
+    PORT_NUM = int(os.environ['AT16K_PORT_NUM'])
+else:
+    PORT_NUM = ARGS.port
 
-HTTP_SERVER = WSGIServer(('', ARGS.port), APP)
+print('Serving model %s on port %d.' % (MODEL_NAME, PORT_NUM))
+
+HTTP_SERVER = WSGIServer(('', PORT_NUM), APP)
 HTTP_SERVER.serve_forever()
 
 

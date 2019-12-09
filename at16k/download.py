@@ -29,8 +29,11 @@ def setup_home():
     """
     Init home directory to store assets and models
     """
-    home_dir = str(Path.home())
-    at16k_model_dir = os.path.join(home_dir, '.at16k')
+    if 'AT16K_RESOURCES_DIR' in os.environ:
+        at16k_model_dir = os.environ['AT16K_RESOURCES_DIR']
+    else:
+        home_dir = str(Path.home())
+        at16k_model_dir = os.path.join(home_dir, '.at16k')
     if not os.path.exists(at16k_model_dir):
         os.mkdir(at16k_model_dir)
     return at16k_model_dir
@@ -53,6 +56,9 @@ def unarchive(local_path, base_dir):
 
 
 def main():
+    """
+    Main
+    """
     assert len(
         sys.argv) > 1, ('Please specify model name: one of en_8k, en_16k, all')
     name = sys.argv[1]
