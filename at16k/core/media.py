@@ -29,7 +29,7 @@ class Media():
         waveform, _ = librosa.load(path=self.file_path, sr=None)
         shape = np.shape(waveform)
         if len(shape) > 1:
-            waveform = np.mean(waveform, axis=1)
+            waveform = np.mean(waveform, axis=0)
         return waveform
 
     @property
