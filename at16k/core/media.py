@@ -2,7 +2,7 @@
 Audio file handler
 """
 
-import scipy.io.wavfile as wavfile
+import librosa
 import numpy as np
 
 class Media():
@@ -18,7 +18,7 @@ class Media():
         """
         Sample rate of audio file
         """
-        sample_rate, _ = wavfile.read(self.file_path)
+        sample_rate = librosa.get_samplerate(path=self.file_path)
         return sample_rate
 
     @property
@@ -26,10 +26,10 @@ class Media():
         """
         Raw waveform of entire audio file
         """
-        _, waveform = wavfile.read(self.file_path)
+        waveform, _ = librosa.load(path=self.file_path, sr=None)
         shape = np.shape(waveform)
         if len(shape) > 1:
-            waveform = np.mean(waveform, axis=1)
+            waveform = np.mean(waveform, axis=0)
         return waveform
 
     @property
