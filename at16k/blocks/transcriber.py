@@ -6,6 +6,7 @@ import tensorflow as tf
 from at16k.core.segment import Segment
 from at16k.core.model import Model
 
+
 class Transcriber():
     """
     Transcribe an audio segment

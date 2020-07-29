@@ -5,13 +5,15 @@ Audio file handler
 import scipy.io.wavfile as wavfile
 import numpy as np
 
-class Media():
+
+class Media:
     """
     Media: I/O functionality to read/write audio files
     """
 
-    def __init__(self, file_path):
+    def __init__(self, file_path, dtype=None):
         self.file_path = file_path
+        self._dtype = dtype
 
     @property
     def sample_rate(self):
@@ -30,6 +32,10 @@ class Media():
         shape = np.shape(waveform)
         if len(shape) > 1:
             waveform = np.mean(waveform, axis=1)
+        if self._dtype is None:
+            return waveform
+        if waveform.dtype not in [self._dtype]:
+            waveform = waveform.astype(self._dtype) / np.iinfo(waveform.dtype).max
         return waveform
 
     @property
@@ -37,4 +43,4 @@ class Media():
         """
         Length of the audio file (in seconds)
         """
-        return len(self.waveform)/float(self.sample_rate)
+        return len(self.waveform) / float(self.sample_rate)

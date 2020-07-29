@@ -29,7 +29,7 @@ from itertools import chain
 import re
 import time
 import six
-from six.moves import range    # pylint: disable=redefined-builtin
+from six.moves import range  # pylint: disable=redefined-builtin
 from at16k.utils import tokenizer
 
 import tensorflow as tf
@@ -39,8 +39,8 @@ PAD = "<pad>"
 EOS = "<EOS>"
 RESERVED_TOKENS = [PAD, EOS]
 NUM_RESERVED_TOKENS = len(RESERVED_TOKENS)
-PAD_ID = RESERVED_TOKENS.index(PAD)    # Normally 0
-EOS_ID = RESERVED_TOKENS.index(EOS)    # Normally 1
+PAD_ID = RESERVED_TOKENS.index(PAD)  # Normally 0
+EOS_ID = RESERVED_TOKENS.index(EOS)  # Normally 1
 
 if six.PY2:
     RESERVED_TOKENS_BYTES = RESERVED_TOKENS
@@ -193,7 +193,7 @@ def _escape_token(token, alphabet):
 
     token = token.replace(u"\\", u"\\\\").replace(u"_", u"\\u")
     ret = [c if c in alphabet and c !=
-           u"\n" else r"\%d;" % ord(c) for c in token]
+                u"\n" else r"\%d;" % ord(c) for c in token]
     return u"".join(ret) + "_"
 
 
@@ -214,10 +214,10 @@ def _unescape_token(escaped_token):
         try:
             return six.unichr(int(m.group(1)))
         except (ValueError, OverflowError) as _:
-            return u"\u3013"    # Unicode for undefined character.
+            return u"\u3013"  # Unicode for undefined character.
 
     trimmed = escaped_token[:-
-                            1] if escaped_token.endswith("_") else escaped_token
+    1] if escaped_token.endswith("_") else escaped_token
     return _UNESCAPE_REGEX.sub(match, trimmed)
 
 
@@ -396,7 +396,7 @@ class SubwordTextEncoder(TextEncoder):
                     start = end
                     break
 
-            else:    # Did not break
+            else:  # Did not break
                 # If there is no possible encoding of the escaped token then one of the
                 # characters in the token is not in the alphabet. This should be
                 # impossible and would be indicative of a bug.
@@ -635,7 +635,7 @@ class SubwordTextEncoder(TextEncoder):
 
             # Reinitialize to the candidate vocabulary.
             new_subtoken_strings = [subtoken for _,
-                                    subtoken in new_subtoken_strings]
+                                                 subtoken in new_subtoken_strings]
             if reserved_tokens:
                 escaped_reserved_tokens = [
                     _escape_token(native_to_unicode(t), self._alphabet)

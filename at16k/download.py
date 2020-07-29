@@ -6,7 +6,7 @@ import sys
 import progressbar
 
 BASE_URL = 'https://storage.googleapis.com/at16k-ce/models'
-AVAILABLE_MODELS = ['en_8k', 'en_16k']
+AVAILABLE_MODELS = ['en_8k', 'en_16k', 'en_16k_rnnt']
 
 PROGRESS_BAR = None
 
@@ -60,13 +60,13 @@ def main():
     Main
     """
     assert len(
-        sys.argv) > 1, ('Please specify model name: one of en_8k, en_16k, all')
+        sys.argv) > 1, ('Please specify model name: one of en_8k, en_16k, en_16k_rnnt, all')
     name = sys.argv[1]
     if name == 'all':
         name = AVAILABLE_MODELS
     else:
         assert name in AVAILABLE_MODELS, (
-            'Please specify a valid model name: one of en_8k, en_16k, all')
+            'Please specify a valid model name: one of en_8k, en_16k, en16k_rnnt, all')
         name = [name]
     base_dir = setup_home()
     for item in name:

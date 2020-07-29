@@ -8,12 +8,14 @@ from pathlib import Path
 import tensorflow as tf
 from at16k.utils.text_encoder import SubwordTextEncoder
 
+
 class Model():
     """ASR Model
     Two propoerties/methods are exposed:
     1) pred_fn: converts a waveform to a list of ids
     2) output_fn: converts list of ids to text
     """
+
     def __init__(self, name):
         self.name = name
         self._pred_fn = self._build_pred_fn()

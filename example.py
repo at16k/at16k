@@ -12,7 +12,8 @@ def main():
     convert = SpeechToText('en_16k')  # or en_8k
 
     # Run STT on an audio file, returns a dict
-    print(convert('./samples/test_16k.wav'))
+    results = convert('./samples/test_16k.wav')
+    print('Text:', results['text'])
 
 
 if __name__ == '__main__':

@@ -48,13 +48,12 @@ import collections
 import sys
 import unicodedata
 import six
-from six.moves import range    # pylint: disable=redefined-builtin
+from six.moves import range  # pylint: disable=redefined-builtin
 import tensorflow as tf
 
 # Conversion between Unicode and UTF-8, if required (on Python2)
 _native_to_unicode = (lambda s: s.decode(
     "utf-8")) if six.PY2 else (lambda s: s)
-
 
 # This set contains all letter and number characters.
 _ALPHANUMERIC_CHAR_SET = set(
