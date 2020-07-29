@@ -7,9 +7,9 @@
 [![Downloads](https://pepy.tech/badge/at16k)](https://pepy.tech/project/at16k)
 
 # at16k
-Pronounced as ***at sixteen k***
+Pronounced as ***at sixteen k***.
 
-[Click here for live demo](https://at16k.com/demo)
+[Try out the interactive demo here.](https://at16k.com/demo)
 
 # What is at16k?
 at16k is a Python library to perform automatic speech recognition or speech to text conversion. The goal of this project is to provide the community with a production quality speech-to-text library.
@@ -21,6 +21,7 @@ It is recommended that you install at16k in a virtual environment.
 - Python >= 3.6
 - Tensorflow = 1.14
 - Scipy (for reading wav files)
+
 
 ## Install via pip
 ```
@@ -36,9 +37,10 @@ $ poetry install
 ```
 
 # Download models
-Currently, two models are available for speech to text conversion.
-- en_8k (Trained on english audio recorded at 8 KHz)
-- en_16k (Trained on english audio recorded at 16 KHz)
+Currently, three models are available for speech to text conversion.
+- en_8k (Trained on English audio recorded at 8 KHz, supports offline ASR)
+- en_16k (Trained on English audio recorded at 16 KHz, supports offline ASR)
+- en_16k_rnnt (Trained on English audio recorded at 16 KHz, supports real-time ASR)
 
 To download all the models:
 ```
@@ -48,6 +50,7 @@ Alternatively, you can download only the model you need. For example:
 ```
 $ python -m at16k.download en_8k
 $ python -m at16k.download en_16k
+$ python -m at16k.download en_16k_rnnt
 ```
 By default, the models will be downloaded and stored at <HOME_DIR>/.at16k. To override the default, set the environment variable AT16K_RESOURCES_DIR.
 For example:
@@ -57,7 +60,7 @@ $ export AT16K_RESOURCES_DIR=/path/to/my/directory
 You will need to reuse this environment variable while using the API via command-line, library or REST API.
 
 # Preprocessing audio files
-at16k accepts wav files with the following spces:
+at16k accepts wav files with the following specs:
 - Channels: 1
 - Bits per sample: 16
 - Sample rate: 8000 (en_8k) or 16000 (en_16k)
@@ -72,42 +75,29 @@ $ ffmpeg -i <input_file> -ar 16000 -ac 1 -ab 16 <output_file>
 ```
 
 # Usage
-There are three ways to invoke at16k speech-to-text converter.
+at16k supports two modes for performing ASR - offline and real-time. And, it comes with a handy command line utility to quickly try out different models and use cases.
 
-## Command line
+Here are a few examples -
 ```
-at16k-convert -i <input_wav_file> -m <model_name>
+# Offline ASR, 8 KHz sampling rate
+$ at16k-convert -i <path_to_wav_file> -m en_8k
+
+# Offline ASR, 16 KHz sampling rate
+$ at16k-convert -i <path_to_wav_file> -m en_16k
+
+# Real-time ASR, 16 KHz sampling rate, from a file, beam decoding
+$ at16k-convert -i <path_to_wav_file> -m en_16k_rnnt -d beam
+
+# Real-time ASR, 16 KHz sampling rate, from mic input, greedy decoding (requires pyaudio)
+$ at16k-convert -m en_16k_rnnt -d greedy
 ```
-Alternatively,
+If the ***at16k-convert*** binary is not available for some reason, replace it with - 
 ```
-python -m at16k.bin.speech_to_text -i <input_wav_file> -m <model_name>
+python -m at16k.bin.speech_to_text ...
 ```
+
 ## Library API
-```
-from at16k.api import SpeechToText
-
-# One-time initialization
-STT = SpeechToText('en_16k') # or en_8k
-
-# Run STT on an audio file, returns a dict
-print(STT('./samples/test_16k.wav'))
-```
-Check [example.py](https://github.com/at16k/at16k/blob/master/example.py) for details on how to use the API.
-
-## REST API server
-```
-at16k-serve -p <port> -m <model_name>
-```
-Alternatively,
-```
-python -m at16k.bin.serve -i <input_wav_file> -m <model_name>
-```
-Lastly, via Docker -
-```
-$ docker pull at16k/at16k:0.1.3
-$ docker run -it at16k/at16k:0.1.3 -p <port> -m <model_name>
-```
-Check [API Docs](https://documenter.getpostman.com/view/1430496/SWE58Kwx?version=latest) for details on how to use the REST API.
+Check [this file](https://github.com/at16k/at16k/blob/master/at16k/bin/speech_to_text.py) for examples on how to use at16k as a library.
 
 # Limitations
 
