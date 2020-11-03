@@ -1,6 +1,7 @@
 import os
 import shutil
 import urllib.request
+from urllib.parse import urljoin
 from pathlib import Path
 import sys
 import progressbar
@@ -71,7 +72,7 @@ def main():
     base_dir = setup_home()
     for item in name:
         file_name = '%s.tar.gz' % item
-        remote_path = os.path.join(BASE_URL, file_name)
+        remote_path = BASE_URL + '/' + file_name
         local_path = os.path.join(base_dir, file_name)
         download_model(remote_path, local_path)
         unarchive(local_path, base_dir)
