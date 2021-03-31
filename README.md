@@ -9,8 +9,6 @@
 # at16k
 Pronounced as ***at sixteen k***.
 
-[Try out the interactive demo here.](https://at16k.com/demo)
-
 # What is at16k?
 at16k is a Python library to perform automatic speech recognition or speech to text conversion. The goal of this project is to provide the community with a production quality speech-to-text library.
 
